@@ -28,8 +28,16 @@
             <td>{{ companie.OwnerName }}</td>
             <td>{{ companie.Industry }}</td>
             <td class="text-nowrap">
-              <span  data-toggle="modal" data-target=".bd-example-modal-lg" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </span>
-              <span data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </span>
+              <span (click)="openModal(companie)"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    data-whatever="@getbootstrap"
+                    data-original-title="Edit">
+                <i class="fa fa-pencil text-inverse m-r-10"></i>
+              </span>
+              <span data-toggle="tooltip" data-original-title="Close">
+                <i class="fa fa-close text-danger"></i>
+              </span>
             </td>
           </tr>
 
@@ -39,68 +47,48 @@
         <!--End Table-->
 
         <!-- testModal -->
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel1"
+        >
+          <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h4 class="modal-title">
+                  Update Company
+                </h4>
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-
               <div class="modal-body">
-                <form>
-
+                <form novalidate="novalidate" #form autocomplete="off" [formGroup]="formulario">
                   <div class="form-group">
-                    <label for="company-name" class="control-label">Company Name:</label>
-                    <input type="text" class="form-control" id="company-name">
+                    <label for="companyName" class="control-label">Company Name:</label>
+                    <input type="text" class="form-control" id="companyName"
+                           formControlName="companyName" name="companyName"
+                           [value]="modalService.companyName"/>
                   </div>
-
                   <div class="form-group">
-                    <label for="OwnerName" class="control-label">Owner Name:</label>
-                    <input type="text" class="form-control" id="OwnerName">
+                    <label for="ownerName" class="control-label">Owner Name:</label>
+                    <input type="text" class="form-control" id="ownerName"
+                           formControlName="ownerName" name="ownerName"
+                           />
                   </div>
-
-                  <div class="form-group">
-                    <label for="country" class="control-label">Country:</label>
-                    <input type="text" class="form-control" id="country">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="industry" class="control-label">Industry:</label>
-                    <input type="text" class="form-control" id="industry">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="employees" class="control-label">Employees:</label>
-                    <input type="text" class="form-control" id="employees">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="market" class="control-label">Market:</label>
-                    <input type="text" class="form-control" id="market">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="create-date" class="control-label">Create Date:</label>
-                    <input type="text" class="form-control" id="create-date">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="max-user" class="control-label">Max Users:</label>
-                    <input type="text" class="form-control" id="max-user">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="max-date" class="control-label">Max Date:</label>
-                    <input type="text" class="form-control" id="max-date">
-                  </div>
-
                 </form>
               </div>
-
-
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="updateCompanie()">
+                  Send message
+                </button>
+              </div>
             </div>
           </div>
         </div>

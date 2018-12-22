@@ -5,6 +5,7 @@ import { PAGES_ROUTES } from './pages-routing.module';
 import {SharedModule} from '../shared/shared.module';
 import { CompaniesComponent } from './companies/companies.component';
 import {ServiceModule} from '../services/service.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +17,8 @@ import {ServiceModule} from '../services/service.module';
     CommonModule,
     SharedModule,
     ServiceModule,
+    FormsModule,
+    ReactiveFormsModule,
     PAGES_ROUTES
   ]
 })
