@@ -12,5 +12,8 @@ export class ModalcompanieService {
   modalSet(companyName: any) {
     this.companyName = companyName.CompanyName;
     this.ownerName = companyName.OwnerName;
+    console.log('servide modal')
+    console.log(this.companyName)
+    console.log(this.ownerName)
   }
 }

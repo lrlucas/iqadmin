@@ -19,4 +19,16 @@ export class CompanieService {
       })
     )
   }
+
+
+  getCompanie(id: string) {
+    let url = 'https://digitaliq.onsfotoboek.nl/5thAPI.php/getCompany';
+    let dataForm = new FormData();
+    dataForm.append('compGUID', id);
+    return this.http.post(url, dataForm).pipe(
+      map( data => {
+        return data;
+      })
+    )
+  }
 }
