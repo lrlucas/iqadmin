@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import Swal from 'sweetalert2'
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,7 @@ export class CompanieService {
     dataForm.append('MaxDate', companie.maxDate);
     return this.http.post(url, dataForm).pipe(
       map( data => {
+        Swal('Update Completed...', 'Company successfully updated', 'success')
         return data;
       })
     )
