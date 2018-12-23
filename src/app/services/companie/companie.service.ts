@@ -31,4 +31,27 @@ export class CompanieService {
       })
     )
   }
+
+  updateCompanie(companie: any) {
+    let url: string = 'https://digitaliq.onsfotoboek.nl/5thAPI.php/updateCompany';
+    let dataForm = new FormData();
+    dataForm.append('compGUID', companie.compGUID);
+    dataForm.append('userGUID', companie.userGUID);
+    dataForm.append('CountryID', companie.countryId);
+    dataForm.append('SectorID', companie.sectorId);
+    dataForm.append('CompanyName', companie.companieName);
+    dataForm.append('Employees', companie.employees);
+    dataForm.append('Market', companie.market);
+    dataForm.append('MaxUsers', companie.maxUser);
+    dataForm.append('MaxDate', companie.maxDate);
+    return this.http.post(url, dataForm).pipe(
+      map( data => {
+        return data;
+      })
+    )
+
+  }
+
+
+
 }

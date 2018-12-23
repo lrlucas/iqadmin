@@ -12,6 +12,7 @@ import {BasicInfoService} from '../../services/basicInfo/basic-info.service';
 export class CompanieComponent implements OnInit {
   companie:any = [];
 
+  compGUID: string;
   companieName: string;
   ownerName: string;
   country: string;
@@ -24,6 +25,8 @@ export class CompanieComponent implements OnInit {
 
 
   countrySelect = [];
+  sectorSelect = [];
+  marketSelect = [];
 
 
   constructor(public router: Router,
@@ -34,10 +37,10 @@ export class CompanieComponent implements OnInit {
   ngOnInit() {
     this.activeRouter.params
       .subscribe(data => {
-        console.log(data.id)
         this.companieService.getCompanie(data.id)
           .subscribe( (data:any) => {
             this.companie = data;
+            this.compGUID = data.CompanyGUID;
             this.companieName = data.CompanyName;
             this.ownerName = data.OwnerName;
             this.country = data.Country;
@@ -47,38 +50,62 @@ export class CompanieComponent implements OnInit {
             this.createDate = data.CreateDate;
             this.maxUser = data.MaxUsers;
             this.maxDate = data.MaxDate;
-            console.log(data)
           })
       })
     // get BasicInfo
     this.basicInfo.getBasicInfo()
       .subscribe( (data:any) => {
-        console.log(data)
-        console.log(data.OptionsCountry)
         this.countrySelect = data.OptionsCountry;
+        this.sectorSelect = data.OptionsSector;
+        this.marketSelect = data.OptionsMarket;
       })
 
   }
 
   selectedCountry(event) {
-    console.log('que sera')
-    console.log(event)
+    this.country = event;
+  }
+
+  selectedIndustry(event) {
+    this.industry = event.target.value;
+  }
+
+  selectedMarket(event) {
+    this.market = event.target.value;
   }
 
 
   updateCompany() {
+    let idCountry = this.countrySelect.filter( country => {
+      return country.Name === this.country
+    });
+
+    let sectorId = this.sectorSelect.filter( sector => {
+      return sector.Name === this.industry
+    });
+
+    let marketUppercase = this.market.charAt(0).toUpperCase() + this.market.slice(1);
+
+    let marketId = this.marketSelect.filter( market => {
+      return market.Name === marketUppercase
+    });
+
     let companie = {
+      compGUID: this.compGUID,
+      userGUID: 'D4369C31-8245-46D0-968C-0F31532C7238',
       companieName: this.companieName,
-      ownerName: this.ownerName,
-      country: this.country,
-      industry: this.industry,
+      countryId: idCountry[0].ID,
+      sectorId: sectorId[0].ID,
       employees: this.employees,
-      market: this.market,
-      createDate: this.createDate,
+      market: marketId[0].ID,
       maxUser: this.maxUser,
       maxDate: this.maxDate
-    }
-    console.log(companie)
+    };
+    this.companieService.updateCompanie(companie)
+      .subscribe( data => {
+        console.log(data)
+      })
+
   }
 
 }
