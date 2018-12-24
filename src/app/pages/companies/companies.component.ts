@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import {CompanieService} from '../../services/companie/companie.service';
+
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-companies',
@@ -9,16 +12,24 @@ import {CompanieService} from '../../services/companie/companie.service';
 export class CompaniesComponent implements OnInit {
   companies = [];
 
-  constructor( public companieService: CompanieService) {
+
+
+
+  constructor( public companieService: CompanieService,
+               public router: Router ) {
     this.companieService.getAllCompanies('D4369C31-8245-46D0-968C-0F31532C7238')
       .subscribe( data => {
-        this.companies = data
-        console.log(this.companies)
-      })
+        this.companies = data;
+        // console.log(this.companies)
+      });
+
   }
 
   ngOnInit() {
+
   }
+
+
 
 
 }

@@ -3,16 +3,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ModalcompanieService {
 
-  public oculto: string = 'oculto';
+  companyName: string = '';
+  ownerName: string = '';
 
   constructor() { }
 
 
-  ocultarModal() {
-
-  }
-
-  mostrarModal() {
-
+  modalSet(companyName: any) {
+    this.companyName = companyName.CompanyName;
+    this.ownerName = companyName.OwnerName;
+    console.log('servide modal')
+    console.log(this.companyName)
+    console.log(this.ownerName)
   }
 }
