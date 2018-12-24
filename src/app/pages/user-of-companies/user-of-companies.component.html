@@ -17,7 +17,7 @@
           <tr>
             <th>Company Name</th>
             <th>Owner Name</th>
-            <th>Industry</th>
+            <th>Employees</th>
             <th class="text-nowrap">Action</th>
           </tr>
           </thead>
@@ -26,17 +26,14 @@
           <tr *ngFor="let companie of companies">
             <td>{{ companie.CompanyName}}</td>
             <td>{{ companie.OwnerName }}</td>
-            <td>{{ companie.Industry }}</td>
+            <td>{{ companie.Employees }}</td>
             <td class="text-nowrap">
               <!-- (click)="updateCompanie(companie)" -->
-              <span [routerLink]="['/companie', companie.CompanyGUID]"
-                    data-original-title="Edit">
-                <i class="fa fa-pencil text-inverse m-r-10"></i>
-              </span>
-              <span
-                    data-toggle="tooltip" data-original-title="Close">
-                <i class="fa fa-close text-danger"></i>
-              </span>
+              <!--<span [routerLink]="['/companie', companie.CompanyGUID]"-->
+                    <!--data-original-title="Edit">-->
+                <!--<i class="fa fa-pencil text-inverse m-r-10"></i>-->
+              <!--</span>-->
+              <button (click)="seeUser(companie.CompanyGUID)" type="button" class="btn btn-block btn-outline-secondary">See all users</button>
             </td>
           </tr>
 
