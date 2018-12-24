@@ -29,13 +29,6 @@ export class CompaniesComponent implements OnInit {
 
   }
 
-  updateCompanie(companie: any) {
-    console.log(companie)
-    console.log(companie.CompanyGUID)
-    this.router.navigate(['/companie', companie.CompanyGUID])
-
-
-  }
 
 
 
