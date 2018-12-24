@@ -5,17 +5,22 @@ import { PAGES_ROUTES } from './pages-routing.module';
 import {SharedModule} from '../shared/shared.module';
 import { CompaniesComponent } from './companies/companies.component';
 import {ServiceModule} from '../services/service.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CompanieComponent } from './companie/companie.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    CompanieComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     ServiceModule,
+    FormsModule,
+    ReactiveFormsModule,
     PAGES_ROUTES
   ]
 })

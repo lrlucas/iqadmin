@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header bg-info">
+          <h4 class="m-b-0 text-white">Update Companie</h4>
+        </div>
+        <div class="card-body">
+          <form #form>
+            <div class="form-body">
+              <hr>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Company Name</label>
+                    <!-- [(ngModel)]="companie.CompanyName" -->
+                    <input type="text" class="form-control" name="companieName" [(ngModel)]="companieName">
+                  </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Owner Name</label>
+                    <input type="text" class="form-control" name="ownerName" [(ngModel)]="ownerName">
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Country</label>
+                    <!-- [(ngModel)]="companie.CompanyName" -->
+                    <!--<input type="text" class="form-control" name="country" [(ngModel)]="country">-->
+                    <select class="form-control custom-select" name="country" (change)="selectedCountry($event.target.value)">
+                      <!--<option (change)="selectedCountry($event.target.value)" >{{country}}</option>-->
+                      <option selected disabled >{{ country }}</option>
+                      <option *ngFor="let countri of countrySelect"
+                              [ngValue]="countri.Name">{{ countri.Name }}</option>
+                    </select>
+                  </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Industry</label>
+                    <select class="form-control custom-select" name="industry" (change)="selectedIndustry($event)">
+                      <!--<option (change)="selectedCountry($event.target.value)" >{{country}}</option>-->
+                      <option selected disabled >{{ industry }}</option>
+                      <option *ngFor="let sector of sectorSelect"
+                              [ngValue]="sector.Name">{{ sector.Name }}</option>
+                    </select>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Employees</label>
+                    <!-- [(ngModel)]="companie.CompanyName" -->
+                    <input type="text" class="form-control" name="employees" [(ngModel)]="employees">
+                  </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Market</label>
+                    <select class="form-control custom-select" name="market" (change)="selectedMarket($event)">
+                      <!--<option (change)="selectedCountry($event.target.value)" >{{country}}</option>-->
+                      <option selected disabled >{{ market }}</option>
+                      <option *ngFor="let market of marketSelect"
+                              [ngValue]="market.Name">{{ market.Name }}</option>
+                    </select>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Create Date</label>
+                    <!-- [(ngModel)]="companie.CompanyName" -->
+                    <input type="text" class="form-control" name="createDate" [(ngModel)]="createDate">
+                  </div>
+                </div>
+                <!--/span-->
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Max User</label>
+                    <input type="text" class="form-control" name="maxUser" [(ngModel)]="maxUser">
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Max Date</label>
+                    <!-- [(ngModel)]="companie.CompanyName" -->
+                    <input type="text" class="form-control" name="maxDate" [(ngModel)]="maxDate">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" (click)="updateCompany()" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+              <button type="button" class="btn btn-inverse">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
