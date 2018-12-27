@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user/user.service';
-import {last} from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-user',
@@ -23,7 +22,7 @@ export class EditUserComponent implements OnInit {
   departamentSelect = [];
 
 
-  constructor(public activatedRoute: ActivatedRoute, public userService: UserService ) {
+  constructor(public activatedRoute: ActivatedRoute, public userService: UserService, private router: Router) {
     this.activatedRoute.params.subscribe( (data: any) => {
       this.userId = data.id;
       this.userService.getUser(data.id).subscribe( (data: any) => {
@@ -75,6 +74,11 @@ export class EditUserComponent implements OnInit {
     this.userService.updateUser(user).subscribe( (data:any) => {
       console.log(data)
     })
+  }
+
+  cancelEdit() {
+    this.router.navigate(['/usersOfCompanies'])
+
   }
 
 }
