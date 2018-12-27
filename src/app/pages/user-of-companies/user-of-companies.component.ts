@@ -14,14 +14,14 @@ export class UserOfCompaniesComponent implements OnInit {
   constructor(public companieService: CompanieService,
               public userService: UserService,
               public router: Router) {
-    this.companieService.getAllCompanies('D4369C31-8245-46D0-968C-0F31532C7238')
-      .subscribe( data => {
-        this.companies = data;
-        console.log(this.companies)
-      });
+
   }
 
   ngOnInit() {
+    this.companieService.getAllCompanies('D4369C31-8245-46D0-968C-0F31532C7238')
+      .subscribe( data => {
+        this.companies = data;
+      });
   }
 
   seeUser(idComp: string) {

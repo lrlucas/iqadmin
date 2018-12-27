@@ -16,7 +16,7 @@
           <thead>
           <tr>
             <th>Company Name</th>
-            <th>Owner Name</th>
+            <th>Country</th>
             <th>Industry</th>
             <th class="text-nowrap">Action</th>
           </tr>
@@ -25,7 +25,7 @@
 
           <tr *ngFor="let companie of companies">
             <td>{{ companie.CompanyName}}</td>
-            <td>{{ companie.OwnerName }}</td>
+            <td>{{ companie.Country }}</td>
             <td>{{ companie.Industry }}</td>
             <td class="text-nowrap">
               <!-- (click)="updateCompanie(companie)" -->

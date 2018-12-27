@@ -6,9 +6,16 @@
 
 <div class="row">
   <div class="col-12">
-    <div class="card">
+
+    <!-- Alert -->
+    <div class="alert alert-danger animated fadeIn" *ngIf="!users.length > 0">
+      Apparently this company has no users
+    </div>
+
+
+    <div class="card animated fadeIn" *ngIf="users.length > 0">
       <div class="card-body">
-        <h2 class="card-title">Users (<small>3</small>)</h2>
+        <!--<h2 class="card-title">Users (<small>3</small>)</h2>-->
 
         <table class="table table-striped">
 

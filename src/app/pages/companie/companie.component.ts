@@ -22,6 +22,7 @@ export class CompanieComponent implements OnInit {
   createDate: string;
   maxUser: string;
   maxDate: string;
+  companieGUID: string;
 
 
   countrySelect = [];
@@ -39,6 +40,8 @@ export class CompanieComponent implements OnInit {
       .subscribe(data => {
         this.companieService.getCompanie(data.id)
           .subscribe( (data:any) => {
+            console.log(data)
+            this.companieGUID = data.CompanyGUID;
             this.companie = data;
             this.compGUID = data.CompanyGUID;
             this.companieName = data.CompanyName;
@@ -101,6 +104,7 @@ export class CompanieComponent implements OnInit {
       maxUser: this.maxUser,
       maxDate: this.maxDate
     };
+
     this.companieService.updateCompanie(companie)
       .subscribe( data => {
         console.log(data)
