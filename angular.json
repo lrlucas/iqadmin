@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/iqadmin",
+            "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,9 +23,23 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/plugins/bootstrap/css/bootstrap.min.css",
+              "src/assets/css/style.css",
+              "src/assets/css/animate.css",
+              "src/assets/css/colors/default-dark.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/plugins/jquery/jquery.min.js",
+              "src/assets/js/perfect-scrollbar.jquery.min.js",
+              "src/assets/plugins/bootstrap/js/popper.min.js",
+              "src/assets/plugins/bootstrap/js/bootstrap.min.js",
+              "src/assets/js/waves.js",
+              "src/assets/js/sidebarmenu.js",
+              "src/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js",
+              "src/assets/plugins/sparkline/jquery.sparkline.min.js",
+              "src/assets/js/custom.js"
+            ]
           },
           "configurations": {
             "production": {
