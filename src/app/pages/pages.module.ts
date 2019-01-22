@@ -10,6 +10,7 @@ import { CompanieComponent } from './companie/companie.component';
 import { UserOfCompaniesComponent } from './user-of-companies/user-of-companies.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserOfCompanieComponent } from './user-of-companie/user-of-companie.component';
+import { EditMyProfileComponent } from './edit-my-profile/edit-my-profile.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UserOfCompanieComponent } from './user-of-companie/user-of-companie.com
     CompanieComponent,
     UserOfCompaniesComponent,
     EditUserComponent,
-    UserOfCompanieComponent
+    UserOfCompanieComponent,
+    EditMyProfileComponent
   ],
   imports: [
     CommonModule,

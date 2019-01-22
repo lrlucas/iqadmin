@@ -5,6 +5,8 @@ import {CompanieComponent} from './companie/companie.component';
 import {UserOfCompaniesComponent} from './user-of-companies/user-of-companies.component';
 import {UserOfCompanieComponent} from './user-of-companie/user-of-companie.component';
 import {EditUserComponent} from './edit-user/edit-user.component';
+import {EditMyProfileComponent} from './edit-my-profile/edit-my-profile.component';
+import {CompanieGuard} from '../services/companie/companie.guard';
 
 const PagesRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -13,6 +15,7 @@ const PagesRoutes: Routes = [
   { path: 'companyUsers', component: UserOfCompanieComponent},
   { path: 'usersOfCompanies', component: UserOfCompaniesComponent},
   { path: 'editUser/:id', component: EditUserComponent},
+  { path: 'profile', component: EditMyProfileComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
