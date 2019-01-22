@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user/user.service';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.css']
+  selector: 'app-edit-my-profile',
+  templateUrl: './edit-my-profile.component.html',
+  styleUrls: ['./edit-my-profile.component.css']
 })
-export class EditUserComponent implements OnInit {
+export class EditMyProfileComponent implements OnInit {
 
   firstname: string;
   lastname: string;
@@ -21,11 +22,15 @@ export class EditUserComponent implements OnInit {
 
   departamentSelect = [];
 
+  //variable para comparar el owner de la empresa
+  public comparar: string;
 
-  constructor(public activatedRoute: ActivatedRoute, public userService: UserService, private router: Router) {
-    this.activatedRoute.params.subscribe( (data: any) => {
-      this.userId = data.id;
-      this.userService.getUser(data.id).subscribe( (data: any) => {
+  constructor(public userService: UserService, private router: Router) { }
+
+  ngOnInit() {
+    this.userId = localStorage.getItem('UserGUID');
+    if (this.userId.length > 0){
+      this.userService.getUser(this.userId).subscribe( (data: any) => {
         this.firstname = data.FirstName;
         this.lastname = data.LastName;
         this.useremail = data.Email;
@@ -34,18 +39,17 @@ export class EditUserComponent implements OnInit {
         this.jobfunction = data.Function;
         this.companyId = data.CompanyGUID;
         this.companyName = data.CompanyName;
+        this.comparar = data.Function;
 
-      })
-    });
+      });
+    }else {
+      return console.log("UserGUID No encontrado");
+    }
 
     // get basic info
     this.userService.getBasicInfo().subscribe( (data: any) => {
       this.departamentSelect = data;
     })
-
-  }
-
-  ngOnInit() {
   }
 
   selectedDepartament(event) {
@@ -70,14 +74,28 @@ export class EditUserComponent implements OnInit {
       JobFunction: this.jobfunction,
       Newsletter: '0'
     };
+    //
+    // console.log('comparar')
+    // console.log(this.jobfunction)
+    let modificar = false;
 
-    this.userService.updateUser(user,false).subscribe( (data:any) => {
-      console.log(data)
+    if (this.jobfunction.toLowerCase().includes("owner")){
+      modificar = true;
+      // console.log("se va a mandar esto", modificar)
+      // console.log("se modifico y tiene la palabra owner")
+    }else {
+      console.log("se modifico peor NO contiene la palabra owner")
+    }
+
+
+
+    this.userService.updateUser(user, modificar).subscribe( (data:any) => {
+      // console.log(data)
     })
   }
 
   cancelEdit() {
-    this.router.navigate(['/usersOfCompanies'])
+    this.router.navigate(['/']);
 
   }
 
