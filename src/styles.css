@@ -12,3 +12,7 @@
   height: 100%;
   z-index: 9999;
 }
+.desactivarLi{
+  pointer-events: none;
+  opacity: 0.6
+}

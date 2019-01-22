@@ -10,6 +10,7 @@ import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component'
 import {SharedModule} from './shared/shared.module';
 import {CommonModule} from '@angular/common';
 import {ServiceModule} from './services/service.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import {ServiceModule} from './services/service.module';
     BrowserModule,
     ServiceModule,
     SharedModule,
-    APP_ROUTES
+    APP_ROUTES,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,86 @@
+<div class="row page-titles">
+  <div class="col-md-5 align-self-center">
+    <h3 class="text-themecolor">My Profile</h3>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+
+      <div class="card-body">
+        <form>
+
+          <div class="form-body">
+            <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="firstname">First Name</label>
+                  <input id="firstname" type="text" class="form-control" name="firstname" [(ngModel)]="firstname">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lastname">Last Name</label>
+                  <input id="lastname" type="text" class="form-control" name="lastname" [(ngModel)]="lastname">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="useremail">User Email</label>
+                  <input id="useremail" type="text" class="form-control" name="useremail" [(ngModel)]="useremail">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="market">Department</label>
+                  <!--<input type="text" class="form-control" name="department" [(ngModel)]="department">-->
+                  <select id="market" class="form-control custom-select" name="market" (change)="selectedDepartament($event)">
+                    <!--<option (change)="selectedCountry($event.target.value)" >{{country}}</option>-->
+                    <option selected disabled >{{ department }}</option>
+                    <option *ngFor="let departament of departamentSelect"
+                            [ngValue]="departament.Name">{{ departament.Name }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="birthyear">BirthYear</label>
+                  <input id="birthyear" type="text" class="form-control" name="birthyear" [(ngModel)]="birthyear">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="jobfunction">Job Function</label>
+                  <!-- disabled -->
+                  <input id="jobfunction"  type="text" class="form-control" name="jobfunction" [(ngModel)]="jobfunction">
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" (click)="updateUser()" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+            <button (click)="cancelEdit()" type="button" class="btn btn-inverse">Cancel</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

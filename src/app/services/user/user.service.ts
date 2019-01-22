@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import Swal from "sweetalert2";
@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
   providedIn: 'root'
 })
 export class UserService {
+  public isOwner: boolean = false;
+  stateOfOwnerChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private http:HttpClient) {
 
@@ -36,6 +38,22 @@ export class UserService {
     )
   }
 
+  verifyOwner() {
+    let url = 'https://digitaliq.onsfotoboek.nl/5thAPI.php/getUser';
+    let userId = localStorage.getItem('UserGUID');
+    let dataForm = new FormData();
+    dataForm.append('userGUID', userId);
+    return this.http.post(url, dataForm).pipe(
+      map((data: any) => {
+        let userIsOwner = data.Function;
+        userIsOwner = userIsOwner.toLowerCase().includes("owner");
+        this.isOwner = userIsOwner;
+        this.stateOfOwnerChanged.emit(this.isOwner)
+
+      })
+    )
+  }
+
 
   getBasicInfo() {
     let url = 'https://digitaliq.onsfotoboek.nl/5thAPI.php/getBasicInfo';
@@ -49,7 +67,8 @@ export class UserService {
   }
 
 
-  updateUser(user: any) {
+  updateUser(user: any, modificar: boolean) {
+
     let url = 'https://digitaliq.onsfotoboek.nl/5thAPI.php/updateUser';
     let dataForm = new FormData();
     dataForm.append('userGUID', user.UserGUID);
@@ -63,9 +82,21 @@ export class UserService {
     dataForm.append('Newsletter', user.Newsletter);
     return this.http.post(url, dataForm).pipe(
       map( (data:any) => {
+        console.log("servicio cambiado", modificar)
+        if (modificar === true) {
+          this.isOwner = true
+          this.stateOfOwnerChanged.emit(this.isOwner)
+        }else {
+          this.isOwner = false;
+          this.stateOfOwnerChanged.emit(this.isOwner)
+        }
         Swal('Update Completed...', 'User successfully updated', 'success')
         return data
       })
     )
+  }
+
+  public stateChangedEmitter() {
+    return this.stateOfOwnerChanged;
   }
 }
