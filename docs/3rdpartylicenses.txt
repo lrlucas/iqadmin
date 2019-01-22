@@ -263,12 +263,6 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 END OF TERMS AND CONDITIONS
 
 
-@angular/common
-MIT
-
-@angular/platform-browser
-MIT
-
 sweetalert2
 MIT
 The MIT License (MIT)
@@ -295,10 +289,19 @@ SOFTWARE.
 
 
 
+@angular/common
+MIT
+
+@angular/platform-browser
+MIT
+
 @angular/router
 MIT
 
 @angular/core
+MIT
+
+@angular/forms
 MIT
 
 zone.js
@@ -324,7 +327,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-@angular/forms
-MIT
