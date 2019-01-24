@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import Swal from "sweetalert2";
 
 @Injectable({
@@ -95,6 +95,26 @@ export class UserService {
       })
     )
   }
+
+  public resetPassword(email: string) {
+    let url: string = 'https://digitaliq.onsfotoboek.nl/5thAPI.php/resetPassword';
+    let dataForm = new FormData();
+    dataForm.append('userEmail', email);
+    return this.http.post(url, dataForm).pipe(
+      map( (data: any) => {
+        if (data.errNum === '200') {
+          Swal('Password sent please check your email', 'E-mail with new password has been sent', 'success')
+          return data
+        }
+      }),catchError(err => {
+        console.log(err)
+        Swal('Rrror when sending password...', 'Please try again', 'error')
+        throw err
+      })
+    )
+  }
+
+
 
   public stateChangedEmitter() {
     return this.stateOfOwnerChanged;
